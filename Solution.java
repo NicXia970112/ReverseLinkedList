@@ -1,4 +1,7 @@
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
+
 import java.awt.*;
+import java.util.HashMap;
 
 public class Solution {
 
@@ -15,10 +18,8 @@ public class Solution {
         l.insert(node4);
         l.insert(node5);
         l.print();
-        System.out.println();
         List newList = l.reverse();
         newList.print();
-
     }
 
 }
@@ -49,16 +50,22 @@ class List {
             System.out.print(p.val + "   ");
             p = p.next;
         }
+        System.out.println();
     }
 
-    public void insert(Node n) {
-        if(head == null) {
-            head = n;
-        }
-        else {
-            n.next = head;
-            head = n;
-        }
+//    public void insert(Node n) {
+//        if(head == null) {
+//            head = n;
+//        }
+//        else {
+//            n.next = head;
+//            head = n;
+//        }
+//    }
+
+    public void insert(Node n) { //头插
+        n.next = head;
+        head = n;
     }
 
     public List reverse() {
@@ -66,12 +73,10 @@ class List {
         Node newHead = p.next;
         List l = new List();
         while (newHead != null) {
-            p.next = null;
             l.insert(p);
             p = newHead;
             newHead = newHead.next;
             if(newHead == null) {
-                p.next = null;
                 l.insert(p);
             }
         }
